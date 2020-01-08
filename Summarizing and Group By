@@ -1,12 +1,32 @@
 library(readxl)
-df <- read_excel("~/jpmDesk/Desktop/R Studio/USD clearing.xlsx")
-View(USD_clearing)
+df <- read_excel("~/x/x/x/file name.xlsx")
+View(df)
 
 
 
-#group by x & y and summarise by y
-df %>% group_by(`x`. `y`) %>%
+#group by x and summarise by y
+df %>%
+  group_by(`x`) %>%
   summarise(Total = sum(`y`, na.rm = T)) %>%
-  arrange(desc(Total))
+  arrange(desc(Total)) %>%
+  mutate(Total_Chr = scales::comma(Total)) %>%
+  as.data.frame(df)
+
+#plotting a graph with multiple graphs per the category
+ ggplot(data = df) +
+  geom_point(mapping = aes(x=`x`y= `y`+
+  facet_wrap(~ `z`, nrow = 2)
+
+#plotting a graph with commas for y scale 
+ggplot(data = USD) +
+  geom_point(mapping = aes(x= Date, y= `Transaction Amount`, color = `Source System`)) +
+  facet_wrap(~ `Source System`, nrow = 2, scales = "free_y") +
+  scale_y_continuous(labels = scales::comma)
   
+  
+  #smooth line plot with commas for y scale 
+ df>% group_by(x `y) %>% 
+  summarise(Total = sum(y, na.rm = T)) %>% 
+  ggplot() + geom_smooth(aes(x = x y = Total, fill = y)) + 
+  scale_y_continuous(labels = scales::comma)
   
