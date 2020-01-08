@@ -1,0 +1,12 @@
+library(readxl)
+df <- read_excel("~/jpmDesk/Desktop/R Studio/USD clearing.xlsx")
+View(USD_clearing)
+
+
+
+#group by x & y and summarise by y
+df %>% group_by(`x`. `y`) %>%
+  summarise(Total = sum(`y`, na.rm = T)) %>%
+  arrange(desc(Total))
+  
+  
